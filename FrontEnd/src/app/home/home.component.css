@@ -1,0 +1,61 @@
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.matCardContainer{
+  margin: 1% 1% 1% 1%;
+  border: 1px solid black;
+  padding: 0;
+}
+
+.QuestionButton{
+  width: 100px;
+  height: 100px;
+  font-size: 23px;
+}
+
+.matCardRow {
+  display: table;
+  height: 230px;
+  width: 100%;
+}
+
+.matCardBottom {
+  display: table;
+  height: 20px;
+  width: 100%;
+}
+
+.button-row {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+}
+
+ ::ng-deep .mat-badge-medium .mat-badge-content{
+  width: 56px;
+  height: 56px;
+}
+
+::ng-deep span:hover{
+  cursor: pointer;
+}

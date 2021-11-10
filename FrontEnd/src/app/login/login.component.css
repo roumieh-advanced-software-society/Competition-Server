@@ -1,0 +1,34 @@
+.matCardContainer {
+  height: 300px;
+  margin: 25% 0;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 305px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.matContainer{
+  display: flex;
+  justify-content: center;
+  background: rgb(131,202,33);
+  background: radial-gradient(circle, rgba(131,202,33,1) 9%, rgba(86,118,245,1) 46%, rgba(250,83,83,1) 82%);
+}
