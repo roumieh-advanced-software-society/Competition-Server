@@ -14,6 +14,7 @@ import {MatButtonModule} from"@angular/material/button";
 import {MatBadgeModule} from "@angular/material/badge";
 import { MatBadgeIconDirective } from './mat-badge-icon.directive';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatFormFieldModule,
     MatButtonModule,
     MatBadgeModule,
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
