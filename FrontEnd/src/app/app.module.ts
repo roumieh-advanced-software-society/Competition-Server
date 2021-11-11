@@ -12,14 +12,16 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from"@angular/material/button";
 import {MatBadgeModule} from "@angular/material/badge";
-import { MatBadgeIconDirective } from './mat-badge-icon.directive'
+import { MatBadgeIconDirective } from './mat-badge-icon.directive';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MatBadgeIconDirective
+    MatBadgeIconDirective,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
