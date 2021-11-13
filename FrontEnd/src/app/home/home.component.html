@@ -1,74 +1,29 @@
 
-<mat-card class="matCardContainer" matBadge appMatBadgeIcon="src\assets\Logo.png">
-
-    <mat-card class="matCardRow" style="background-color: rgb(181, 240, 98); border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
-        <div class="button-row">
-          <div class="flex-container">
-            <div class="button-container">
-              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[0]" style="color: #fff; background-color:rgb(131,202,33);">1
-              </button>
-            </div>
-            <div class="button-container">
-              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[1]" style="color: #fff; background-color:rgb(131,202,33);">2
-              </button>
-            </div>
-            <div class="button-container">
-              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[2]" style="color: #fff; background-color:rgb(131,202,33);">3
-              </button>
-            </div>
-          </div>
-        </div>
-    </mat-card>
-
-    <mat-card class="matCardRow" style="background-color: #8097f5; border-radius: 0;">
-      <div class="button-row">
-        <div class="flex-container">
-          <div class="button-container">
-            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[3]" style="color: #fff; background-color:rgb(86,118,245);">4
-            </button>
-          </div>
-          <div class="button-container">
-            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[4]" style="color: #fff; background-color:rgb(86,118,245);">5
-            </button>
-          </div>
-          <div class="button-container">
-            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[5]" style="color: #fff; background-color:rgb(86,118,245);">6
-            </button>
-          </div>
-        </div>
-      </div>
-  </mat-card>
-
-  <mat-card class="matCardRow" style="background-color: rgb(250, 128, 128); border-radius: 0;">
+<mat-card class="matCardContainer" matBadge appMatBadgeIcon="src\assets\Logo.png" >
+  <mat-card class="matCardRow" *ngFor="let style of styles; index as j" [style]="styles[j][0]">
     <div class="button-row">
       <div class="flex-container">
-        <div class="button-container">
-          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[6]" style="color: #fff; background-color:rgb(250,83,83);">7
-          </button>
-        </div>
-        <div class="button-container">
-          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[7]" style="color: #fff; background-color:rgb(250,83,83);">8
-          </button>
-        </div>
-        <div class="button-container">
-          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[8]" style="color: #fff; background-color:rgb(250,83,83);">9
+        <div class="button-container" *ngFor="let completed of homeResponse.sections[j].completed; index as i">
+          <button (click)="onSubmit(3*(j)+i+1)" mat-fab class="QuestionButton" [disabled]="!homeResponse.sections[j].unlocked || (homeResponse.sections[j].unlocked&&completed)" [style]="styles[j][1]">{{3*(j)+i+1}}
           </button>
         </div>
       </div>
     </div>
-  </mat-card>
+</mat-card>
 
-  <mat-card class="matCardBottom" style="background-color: white; border-top-left-radius: 0; border-top-right-radius: 0;">
-    <div class="button-row">
-      <div class="flex-container">
-        <div class="button-container">
-          Copyright &copy; 2021 RASS -
-          <a routerLink="/login" routerLinkActive="active" style="color:black; font-size:14px; text-decoration:none;">What's this?</a>
-        </div>
 
+
+<mat-card class="matCardBottom" style="background-color: white; border-top-left-radius: 0; border-top-right-radius: 0;">
+  <div class="button-row">
+    <div class="flex-container">
+      <div class="button-container">
+        Copyright &copy; 2021 RASS -
+        <a class="whatIf" routerLink="/login" routerLinkActive="active" style="color:black; font-size:14px; text-decoration:none;">What's this?</a>
       </div>
+
     </div>
-  </mat-card>
+  </div>
+</mat-card>
 </mat-card>
 
 <p>TeamID: {{Teamid}}</p>

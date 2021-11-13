@@ -1,4 +1,4 @@
 export interface ISectionStatus{
-  completed: boolean;
+  completed: boolean[];
   unlocked: boolean;
 }

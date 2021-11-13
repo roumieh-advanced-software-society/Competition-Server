@@ -59,3 +59,11 @@ mat-card-content {
 ::ng-deep span:hover{
   cursor: pointer;
 }
+
+.whatIf{
+  transition: transform .7s ease-in-out;
+}
+.whatIf:hover{
+  transform: rotate(360deg);
+  cursor: help;
+}
