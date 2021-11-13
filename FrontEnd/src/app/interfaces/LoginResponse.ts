@@ -1,4 +1,4 @@
 export interface ILoginResponse{
-  success: string;
+  success: boolean;
   teamID: string;
 }

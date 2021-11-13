@@ -5,15 +5,15 @@
         <div class="button-row">
           <div class="flex-container">
             <div class="button-container">
-              <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(131,202,33);">1
+              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[0]" style="color: #fff; background-color:rgb(131,202,33);">1
               </button>
             </div>
             <div class="button-container">
-              <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(131,202,33);">2
+              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[1]" style="color: #fff; background-color:rgb(131,202,33);">2
               </button>
             </div>
             <div class="button-container">
-              <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(131,202,33);">3
+              <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[2]" style="color: #fff; background-color:rgb(131,202,33);">3
               </button>
             </div>
           </div>
@@ -24,15 +24,15 @@
       <div class="button-row">
         <div class="flex-container">
           <div class="button-container">
-            <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(86,118,245);">4
+            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[3]" style="color: #fff; background-color:rgb(86,118,245);">4
             </button>
           </div>
           <div class="button-container">
-            <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(86,118,245);">5
+            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[4]" style="color: #fff; background-color:rgb(86,118,245);">5
             </button>
           </div>
           <div class="button-container">
-            <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(86,118,245);">6
+            <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[5]" style="color: #fff; background-color:rgb(86,118,245);">6
             </button>
           </div>
         </div>
@@ -43,15 +43,15 @@
     <div class="button-row">
       <div class="flex-container">
         <div class="button-container">
-          <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(250,83,83);">7
+          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[6]" style="color: #fff; background-color:rgb(250,83,83);">7
           </button>
         </div>
         <div class="button-container">
-          <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(250,83,83);">8
+          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[7]" style="color: #fff; background-color:rgb(250,83,83);">8
           </button>
         </div>
         <div class="button-container">
-          <button mat-fab class="QuestionButton" style="color: #fff; background-color:rgb(250,83,83);">9
+          <button mat-fab class="QuestionButton" [disabled]="homeResponse.sections[8]" style="color: #fff; background-color:rgb(250,83,83);">9
           </button>
         </div>
       </div>
@@ -71,4 +71,4 @@
   </mat-card>
 </mat-card>
 
-<p></p>
+<p>TeamID: {{Teamid}}</p>

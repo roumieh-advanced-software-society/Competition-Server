@@ -14,7 +14,8 @@ import {MatButtonModule} from"@angular/material/button";
 import {MatBadgeModule} from "@angular/material/badge";
 import { MatBadgeIconDirective } from './mat-badge-icon.directive';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { QuestionComponent } from './question/question.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http'
     LoginComponent,
     HomeComponent,
     MatBadgeIconDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
