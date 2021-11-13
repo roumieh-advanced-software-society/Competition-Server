@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private router:Router,private authService: AuthService, private http: HttpClient) { }
 
   model: ILogin = {username: "admin", password: "admin"} //to be changed with flask querying (just for testing)
-  loginResponse: ILoginResponse = {success: 'false', teamID: "0000000"};
+  loginResponse: ILoginResponse = {success: false, teamID: "0"};
   loginForm!: FormGroup;
   message!: string;
   returnUrl!: string;
@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
         this.message="Success, Redirecting";
         //this.authService.authLogin(this.model);
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("token", this.f.username.value);
-        this.router.navigate([this.returnUrl]);
+        localStorage.setItem("token", this.loginResponse.teamID);
+        this.router.navigate([this.returnUrl]); //sending data between routes
       }
       else {
         this.message = "Did you really forget your username and password...";
@@ -54,16 +54,26 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  checkCredentials(username: string, password: string){ //:Observable<User>{
+  checkCredentials(un: string, pswrd: string){ //:Observable<User>{
     //post username and password to flask
 
     //get success boolean and TeamID string
     //return this.http.get(apiUrl+"/login").catch(services._handleError);
 
-    this.http.post<ILoginResponse>('http://127.0.0.1:5000/login', {username: username, password: password}).subscribe(data => {
+    /*this.http.post<ILoginResponse>('http://127.0.0.1:5000/login', {username: un, password: pswrd}).subscribe(data => {
       this.loginResponse.success = data.success;
       this.loginResponse.teamID = data.teamID;
-    })
+      console.log(data.success);
+    })*/
+    if(un=="admin" && pswrd=="admin"){
+      this.loginResponse.success = true;
+      this.loginResponse.teamID = "AA11"; //better to be a guid
+    }
+
+    else{
+      this.loginResponse.success = false;
+    }
+
 
     return this.loginResponse.success;
   }
