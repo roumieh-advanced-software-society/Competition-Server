@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   updateProgression(teamID: string){
-    /*this.http.post<IHomeResponse>('http://127.0.0.1:5000/home', {teamID}).subscribe(data => {
+    /*this.http.post<IHomeResponse>('http://127.0.0.1:5000/home', {TeamID: teamID}).subscribe(data => {
       this.homeResponse.teamPoints = data.teamPoints;
       this.homeResponse.sections = data.sections;
     })*/
@@ -53,6 +53,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmit(questionNumber: number){
     console.log(questionNumber);
+    localStorage.setItem("q",questionNumber.toString());
+    this.router.navigate(['/question']);
   }
 }
 

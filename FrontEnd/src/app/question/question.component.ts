@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+  questionID!: string;
+  question!:string;
+  flag!:string;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-  }
+    this.questionID = localStorage.getItem("q")|| "";
+    }
+
+
 
 }

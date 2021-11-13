@@ -4,10 +4,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { QuestionComponent } from './question/question.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate : [AuthGuard] },
+  {path: 'question', component: QuestionComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch:'full'},
   { path: '**', component: PageNotFoundComponent}
 ];

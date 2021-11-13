@@ -67,3 +67,7 @@ mat-card-content {
   transform: rotate(360deg);
   cursor: help;
 }
+
+::ng-deep .mat-typography{
+  background-image: url(src\assets\black.jpg);
+}
