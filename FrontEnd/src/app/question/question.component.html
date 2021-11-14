@@ -9,11 +9,15 @@
     <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
       <div>
         <mat-form-field>
-          <input type="text" matInput placeholder="Flag" formControlName="flag">
+          <input type="text" matInput maxlength="50" placeholder="Flag" formControlName="flag">
         </mat-form-field>
+
         <div class="button">
           <button type="submit" mat-button class="questionButton">Submit</button>
         </div>
+        <mat-form-field style="width: 100%;">
+          <textarea *ngIf="questionData.isCode" maxlength="2300" matInput placeholder="Code" formControlName="code"></textarea>
+        </mat-form-field>
       </div>
 
 
