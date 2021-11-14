@@ -8,13 +8,16 @@ class Question(Base):
     __tablename__ = "questions"
     id = Column(Integer, primary_key=True)
     number = Column(Integer)
+    title = Column(String)
     text = Column(String)
     answer = Column(String)
     points = Column(Integer)
+    code_required = Column(String)
 
-    def __init__(self, number, text, answer, points):
+    def __init__(self, number, title, text, answer, points, code):
         self.number = number
+        self.title = title
         self.text = text
         self.answer = answer
         self.points = points
-        # TODO: generate username and password and ID
+        self.code_required == code

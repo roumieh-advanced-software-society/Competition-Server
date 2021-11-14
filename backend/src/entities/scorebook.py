@@ -23,5 +23,10 @@ class Scorebook(Base):
     team_id = Column(Integer, ForeignKey("teams.id"))
     team = relationship("Team", uselist=False, back_populates="scorebook")
 
-    def __init__(self):
-        pass # TODO
+    def __init__(self, team_id, question_ids):
+        # TODO
+        self.team_id = team_id
+        if len(question_ids) == 11:
+            for i in range(len(question_ids)):
+                exec(f"self.QID{i+1} = {question_ids[i]}")
+        self.solved = '0' * 11

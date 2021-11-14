@@ -9,6 +9,7 @@ psycopg2-binary = "*"
 flask = "*"
 marshmallow = "*"
 flask-cors = "*"
+requests = "*"
 
 [dev-packages]
 
