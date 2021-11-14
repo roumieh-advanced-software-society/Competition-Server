@@ -1,19 +1,28 @@
-<mat-card class="example-card">
+<mat-card class="card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>Question #{{questionID}}</mat-card-title>
+    <mat-card-subtitle>{{questionData.questionTitle}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <p style="border: 1px solid black; border-radius: 5px; padding: 5px;">{{questionData.question}}<p>
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Flag" formControlName="flag">
+        </mat-form-field>
+        <div class="button">
+          <button type="submit" mat-button class="questionButton">Submit</button>
+        </div>
+      </div>
+
+
+      <p *ngIf="message" class="error">
+        {{ message }}
+      </p>
+
+    </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+
 </mat-card>
+

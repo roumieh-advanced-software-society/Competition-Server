@@ -25,7 +25,7 @@ mat-card-content {
 
 .matCardBottom {
   display: table;
-  height: 20px;
+  height: 10px;
   width: 100%;
 }
 
@@ -71,3 +71,5 @@ mat-card-content {
 ::ng-deep .mat-typography{
   background-image: url(src\assets\black.jpg);
 }
+
+

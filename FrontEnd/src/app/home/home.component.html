@@ -1,9 +1,11 @@
-  <mat-card class="matCardContainer" matBadge appMatBadgeIcon="src\assets\Logo.png" >
+  <mat-card class="matCardContainer" matBadge appMatBadgeIcon="src\assets\Logo.png" id="Oh you have found me! My name is X Æ A-12, I have safely hidden my treasure in gith... wait someone is coming, take this keyphrase you'll need it more than once! DHS&Rjd">
     <mat-card class="matCardRow" *ngFor="let style of styles; index as j" [style]="styles[j][0]">
       <div class="button-row">
         <div class="flex-container">
           <div class="button-container" *ngFor="let completed of homeResponse.sections[j].completed; index as i">
-            <button (click)="onSubmit(3*(j)+i+1)" mat-fab class="QuestionButton" [disabled]="!homeResponse.sections[j].unlocked || (homeResponse.sections[j].unlocked&&completed)" [style]="styles[j][1]">{{3*(j)+i+1}}
+            <button (click)="openSnackBar()" *ngIf="!homeResponse.sections[j].unlocked || (homeResponse.sections[j].unlocked&&completed)" mat-fab class="QuestionButton" disabled [style]="styles[j][1]">{{3*(j)+i+1}}
+            </button>
+            <button (click)="onSubmit(3*(j)+i+1)"  mat-fab class="QuestionButton" *ngIf="!(!homeResponse.sections[j].unlocked || (homeResponse.sections[j].unlocked&&completed))" [style]="styles[j][1]">{{3*(j)+i+1}}
             </button>
           </div>
         </div>
@@ -17,7 +19,7 @@
       <div class="flex-container">
         <div class="button-container">
           Copyright &copy; 2021 RASS -
-          <a class="whatIf" routerLink="/login" routerLinkActive="active" style="color:black; font-size:14px; text-decoration:none;">What's this?</a>
+          <a class="whatIf" (click)="onSubmit(0)" style="color:black; font-size:14px; text-decoration:none;">What's this?</a>
         </div>
 
       </div>

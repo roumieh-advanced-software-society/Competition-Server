@@ -1,8 +1,31 @@
-.example-card {
+
+
+.card {
   max-width: 400px;
 }
 
-.example-header-image {
+.header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+::ng-deep .mat-typography{
+  background-image: url(src\assets\black.jpg);
+}
+.error {
+  color: red;
+}
+
+.mat-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.questionButton{
+  top: 8px;
+}
+
+.button{
+  float: left;
 }
