@@ -2,6 +2,7 @@
 
 from sqlalchemy import Column, String, Integer
 from base import Base
+from marshmallow import Schema, fields
 
 
 class Question(Base):
@@ -21,3 +22,13 @@ class Question(Base):
         self.answer = answer
         self.points = points
         self.code_required == code
+
+
+class ExamSchema(Schema):
+    id = fields.Number()
+    number = fields.Number()
+    title = fields.Str()
+    text = fields.Str()
+    answer = fields.Str()
+    points = fields.Number()
+    code_required = fields.Str()

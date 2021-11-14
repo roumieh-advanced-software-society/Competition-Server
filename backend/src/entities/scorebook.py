@@ -2,6 +2,7 @@
 
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
+from marshmallow import Schema, fields
 from base import Base
 
 
@@ -30,3 +31,20 @@ class Scorebook(Base):
             for i in range(len(question_ids)):
                 exec(f"self.QID{i+1} = {question_ids[i]}")
         self.solved = '0' * 11
+
+
+class ExamSchema(Schema):
+    id = fields.Number()
+    QID1 = fields.Number()
+    QID2 = fields.Number()
+    QID3 = fields.Number()
+    QID4 = fields.Number()
+    QID5 = fields.Number()
+    QID6 = fields.Number()
+    QID7 = fields.Number()
+    QID8 = fields.Number()
+    QID9 = fields.Number()
+    QID10 = fields.Number()
+    QID11 = fields.Number()
+    team_id = fields.Number()
+    solved = fields.Str()
