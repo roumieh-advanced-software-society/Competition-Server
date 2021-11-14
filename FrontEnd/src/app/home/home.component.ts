@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IHomeResponse } from '../interfaces/homeResponse';
 import { AuthService } from '../services/auth.service';
 import {ISectionStatus} from '../interfaces/sectionStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ["background-color: rgb(181, 240, 98); border-bottom-right-radius: 0; border-bottom-left-radius: 0;",  "color: #fff; background-color:rgb(131,202,33);"],
     ["background-color: #8097f5; border-radius: 0;",  "color: #fff; background-color:rgb(86,118,245);"],
     ["background-color: rgb(250, 128, 128); border-radius: 0;",  "color: #fff; background-color:rgb(250,83,83);"]]
-  constructor(private router: Router, private authService: AuthService,private http: HttpClient) { }
+  constructor(private router: Router, private authService: AuthService,private http: HttpClient,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.Teamid = localStorage.getItem("token") || "0"; //getting from history(storage) but we have to save it again in case of reload (OnDestroy)
@@ -55,6 +56,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(questionNumber);
     localStorage.setItem("q",questionNumber.toString());
     this.router.navigate(['/question']);
+  }
+
+
+  openSnackBar() {
+    this._snackBar.open("What Are you trying to do?", "Dismiss", {
+      duration: 2000,
+    });
   }
 }
 

@@ -16,6 +16,7 @@ import { MatBadgeIconDirective } from './mat-badge-icon.directive';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import {HttpClientModule} from '@angular/common/http';
 import { QuestionComponent } from './question/question.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { QuestionComponent } from './question/question.component'
     MatFormFieldModule,
     MatButtonModule,
     MatBadgeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
