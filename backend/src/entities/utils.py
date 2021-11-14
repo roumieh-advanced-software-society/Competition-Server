@@ -22,7 +22,7 @@ def get_latest_data(link, filename):
             with open(filename, 'wb') as file:
                 file.write(req.content)
         else:
-            print("Error getting the data.")
+            print(f"Error getting the data. Status code: {req.status_code}")
     except:
         print("Could not retieve sheet.")
 
@@ -49,6 +49,8 @@ def insert_questions(filename):
     session = Session()
     # Delete all existing scorebooks
     session.query(Scorebook).delete(synchronize_session=False)
+    session.commit()
+    session.query(Question).delete(synchronize_session=False)
     session.commit()
     for question in questions:
         session.add(question)
@@ -120,9 +122,20 @@ def get_db_rows():
     print(len(session.query(Question).all()))
 
 
+def get_teams():
+    # generate database schema
+    Base.metadata.create_all(engine)
+    # start session
+    session = Session()
+    teams = session.query(Team).all()
+    for team in teams:
+        print(f"{team.id} - {team.username} - {team.password}")
+
+
 if __name__ == "__main__":
-    #get_latest_data("teams_spreadsheet.dat", "teams_data.csv")
-    #get_latest_data("questions_spreadsheet.dat", "questions_data.csv")
-    #insert_teams("teams_data.csv")
-    #insert_questions("questions_data.csv")
-    get_db_rows()
+    # get_latest_data("teams_spreadsheet.dat", "teams_data.csv")
+    # get_latest_data("questions_spreadsheet.dat", "questions_data.csv")
+    # insert_teams("teams_data.csv")
+    # insert_questions("questions_data.csv")
+    # get_db_rows()
+    get_teams()
