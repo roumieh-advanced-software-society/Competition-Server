@@ -72,4 +72,6 @@ mat-card-content {
   background-image: url(src\assets\black.jpg);
 }
 
-
+.secretImage:hover{
+  cursor:zoom-in;
+}

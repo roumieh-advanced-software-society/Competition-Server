@@ -32,3 +32,10 @@ mat-card-content {
   background: rgb(131,202,33);
   background: radial-gradient(circle, rgba(131,202,33,1) 9%, rgba(86,118,245,1) 46%, rgba(250,83,83,1) 82%);
 }
+
+.Logo{
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 90%);
+  top: 17px;
+}

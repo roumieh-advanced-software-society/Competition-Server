@@ -60,20 +60,10 @@ export class LoginComponent implements OnInit {
     //get success boolean and TeamID string
     //return this.http.get(apiUrl+"/login").catch(services._handleError);
 
-    /*this.http.post<ILoginResponse>('http://127.0.0.1:5000/login', {username: un, password: pswrd}).subscribe(data => {
+    this.http.post<ILoginResponse>('http://127.0.0.1:5000/login', {username: un, password: pswrd}).subscribe(data => {
       this.loginResponse.success = data.success;
       this.loginResponse.teamID = data.teamID;
-      console.log(data.success);
-    })*/
-    if(un=="admin" && pswrd=="admin"){
-      this.loginResponse.success = true;
-      this.loginResponse.teamID = "AA11"; //better to be a guid
-    }
-
-    else{
-      this.loginResponse.success = false;
-    }
-
+    })
 
     return this.loginResponse.success;
   }

@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     }
     else{
-    /*this.http.post<string>('http://127.0.0.1:5000/question', {TeamID: this.teamID, Q_Number: this.questionID}).subscribe(data => {
+    /*this.http.post<IQuestionResponse>('http://127.0.0.1:5000/question', {TeamID: this.teamID, Q_Number: this.questionID}).subscribe(data => {
       this.questionData.questionTitle = data.questionTitle;
       this.questionData.question = data.question;
       this.questionData.isCode = data.isCode;
