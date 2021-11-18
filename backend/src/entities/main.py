@@ -42,8 +42,6 @@ def home():
     session = Session()
     team_points = session.query(Team.total_points)\
         .filter(Team.id == team_id).first()
-    if team_points is None:
-        return jsonify({0:0}), 404
     team_points = team_points[0]
     solved = session.query(Scorebook.solved)\
         .filter(Scorebook.team_id == team_id).first()[0]
@@ -75,13 +73,12 @@ def getQuestion():
     q_nbr = request.values.get('Q_Number')
     session = Session()
     q_id = eval(f"session.query(Scorebook.QID{q_nbr}).filter(Scorebook.team_id == {team_id}).first()")
-    if q_id is None:
-        return jsonify({'correct': False}), 200
     q_id = q_id[0]
-    question = session.query(Question.title, Question.text).filter(Question.id == q_id).first()
+    question = session.query(Question.title, Question.text, Question.code_required).filter(Question.id == q_id).first()
     return_val = {
         'questionTitle': question[0],
-        'question': question[1]
+        'question': question[1],
+        'isCode': (True if question[2]=='Yes' else False)
     }
     return jsonify(return_val), 200
 
@@ -93,8 +90,6 @@ def verifyQuestion():
     answer = request.values.get('Flag')
     session = Session()
     q_id = eval(f"session.query(Scorebook.QID{q_nbr}).filter(Scorebook.team_id == {team_id}).first()")
-    if q_id is None:
-        return jsonify({'correct': False}), 200
     q_id = q_id[0]
     question = session.query(Question).filter(Question.id == q_id).first()
     real_answer = question.answer
