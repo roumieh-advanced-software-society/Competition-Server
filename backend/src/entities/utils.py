@@ -129,13 +129,31 @@ def get_teams():
     session = Session()
     teams = session.query(Team).all()
     for team in teams:
-        print(f"{team.id} - {team.username} - {team.password}")
+        print(f"{team.id} - {team.username} - {team.password} - {team.total_points}")
+
+def subtract_points(team_id, pnts):
+    Base.metadata.create_all(engine)
+    session = Session()
+    team = session.query(Team).filter(Team.id == team_id).\
+            update({"total_points": (Team.total_points - pnts)})
+    session.commit()
+   
+def get_scoreboards():
+    Base.metadata.create_all(engine)
+    session = Session()
+    scoreboards = session.query(Scorebook).all()
+    for s in scoreboards:
+        b = list(map(int, list(s.solved)))
+        points = [100, 100, 200, 200, 200, 300, 300, 500, 500, 200, 200]
+        score = sum([b[i] * points[i] for i in range(11)])
+        print(f"{s.team_id} - {s.solved} - {score}")
 
 
 if __name__ == "__main__":
     # get_latest_data("teams_spreadsheet.dat", "teams_data.csv")
     # get_latest_data("questions_spreadsheet.dat", "questions_data.csv")
-    # insert_teams("teams_data.csv")
-    # insert_questions("questions_data.csv")
-    # get_db_rows()
+    #reset_db()
+    #insert_teams("teams_data.csv")
+    #insert_questions("questions_data.csv")
+    #get_db_rows()
     get_teams()
