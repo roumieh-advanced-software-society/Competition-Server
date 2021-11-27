@@ -1,5 +1,5 @@
 import { state } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IHomeResponse } from '../interfaces/homeResponse';
@@ -15,18 +15,26 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class HomeComponent implements OnInit, OnDestroy {
 
   Teamid!: string;
-  homeResponse: IHomeResponse = {teamPoints: 0, sections: [<ISectionStatus>{completed: [false, false, false], unlocked: true}]}
+  homeResponse: IHomeResponse = {teamPoints: 0, section: [<ISectionStatus>{completed: [false, false, false], unlocked: true}]}
   styles = [
     ["background-color: rgb(181, 240, 98); border-bottom-right-radius: 0; border-bottom-left-radius: 0;",  "color: #fff; background-color:rgb(131,202,33);"],
     ["background-color: #8097f5; border-radius: 0;",  "color: #fff; background-color:rgb(86,118,245);"],
     ["background-color: rgb(250, 128, 128); border-radius: 0;",  "color: #fff; background-color:rgb(250,83,83);"]]
+
+  headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+    });
+
+    username: string ="";
+		
   constructor(private router: Router, private authService: AuthService,private http: HttpClient,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.Teamid = localStorage.getItem("token") || "0"; //getting from history(storage) but we have to save it again in case of reload (OnDestroy)
-    //console.log(this.id);
-
-    //progression update:
+    this.username=localStorage.getItem("username")||"";
     this.updateProgression(this.Teamid);
   }
 
@@ -40,20 +48,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   updateProgression(teamID: string){
-    /*this.http.post<IHomeResponse>('http://127.0.0.1:5000/home', {TeamID: teamID}).subscribe(data => {
+	  console.log(teamID);
+    this.http.post<IHomeResponse>('http://20.79.219.204:5000/home?TeamID='+teamID, {headers: this.headers}).toPromise().then(data => {
+	console.log(data);
       this.homeResponse.teamPoints = data.teamPoints;
-      this.homeResponse.sections = data.sections;
-    })*/
-
-    this.homeResponse.teamPoints = 200;
-    this.homeResponse.sections = [
-      {completed: [true, true, false], unlocked: true},
-      {completed: [false, false, false], unlocked: true},
-      {completed: [false, false, false], unlocked: false}];
+      this.homeResponse.section = data.section;
+    })
   }
 
   onSubmit(questionNumber: number){
-    console.log(questionNumber);
     localStorage.setItem("q",questionNumber.toString());
     this.router.navigate(['/question']);
   }

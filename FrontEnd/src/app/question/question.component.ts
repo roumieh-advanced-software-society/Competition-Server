@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,6 +20,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
   code: string ="";
   message!:string;
   questionForm!: FormGroup;
+  success: boolean = false;
+  headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+    });
 
 
 
@@ -45,18 +52,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     }
     else{
-    /*this.http.post<IQuestionResponse>('http://127.0.0.1:5000/question', {TeamID: this.teamID, Q_Number: this.questionID}).subscribe(data => {
+    this.http.post<IQuestionResponse>('http://20.79.219.204:5000/getQuestion?TeamID='+this.teamID+'&Q_Number='+this.questionID, {headers: this.headers}).toPromise().then(data => {
       this.questionData.questionTitle = data.questionTitle;
       this.questionData.question = data.question;
       this.questionData.isCode = data.isCode;
-    })*/
-    this.questionData.questionTitle = "Hint: Look for a potato and boil it.";
-    this.questionData.question = "This is a testing question, 1 2 3 4 5 6 6 7 8 8 9 7 5 34 2 3 4 5 5 54  3 ";
-    this.questionData.isCode = false;
-    }
-
+    })
+   }
   }
-
   get f() {return this.questionForm.controls}
 
   onSubmit(){
@@ -64,23 +66,20 @@ export class QuestionComponent implements OnInit, OnDestroy {
       this.message = "What do you expect having an empty answer?";
     }
     else{
-      if(this.checkAnswer(this.f.flag.value, this.f.code.value)){
+	
+    this.http.post<{correct: boolean}>('http://20.79.219.204:5000/verifyQuestion?TeamID='+this.teamID+'&Q_Number='+this.questionID+'&Flag='+this.f.flag.value+"&Code="+this.f.code.value, {headers: this.headers}).toPromise().then(data => {
+      this.success = data.correct;
+     	
+      if(this.success){
         this.message = "Congrats!";
-        //dont forget bel back
+        
         localStorage.setItem("q","-1");
         this.router.navigate(['/home']);
       }
       else{
         this.message = "Try again!";
       }
+    })
     }
   }
-
-  checkAnswer(answer: string, code:string) : boolean{
-    /*this.http.post<boolean>('http://127.0.0.1:5000/verifyQuestion', {TeamID: this.teamID, Q_Number: this.questionID, Flag: this.flag, Code: this.code}).subscribe(data => {
-      return data;
-    })*/
-    return true;
-  }
-
 }
